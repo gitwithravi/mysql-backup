@@ -1,0 +1,19 @@
+# MySQL connection
+DB_HOST="127.0.0.1"
+DB_PORT="3306"
+DB_NAME="my_database"
+DB_USER="backup_user"
+DB_PASSWORD="change_me"
+
+# Local backup storage
+LOCAL_BACKUP_DIR="/var/backups/mysql"
+
+# Remote VM destination
+REMOTE_USER="backup"
+REMOTE_HOST="example.com"
+REMOTE_PORT="22"
+REMOTE_BACKUP_DIR="/var/backups/mysql"
+
+# Optional SSH identity file.
+# Leave empty to use the default SSH agent/key behavior.
+SSH_KEY_PATH=""
