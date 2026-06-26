@@ -14,6 +14,32 @@ Edit `backup.conf` with the MySQL connection, local backup directory, and remote
 
 The remote backup directory must already exist and the configured SSH user must be able to write to it.
 
+## MySQL Backup User
+
+Create a dedicated MySQL user instead of using `root` or an application user. Replace `my_database`, `backup_user`, and `strong_password_here` with your values.
+
+```sql
+CREATE USER 'backup_user'@'localhost' IDENTIFIED BY 'strong_password_here';
+GRANT SELECT, SHOW VIEW, TRIGGER, EVENT, LOCK TABLES ON `my_database`.* TO 'backup_user'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+If the script connects from another host, replace `localhost` with that host or IP address:
+
+```sql
+CREATE USER 'backup_user'@'backup_server_ip' IDENTIFIED BY 'strong_password_here';
+GRANT SELECT, SHOW VIEW, TRIGGER, EVENT, LOCK TABLES ON `my_database`.* TO 'backup_user'@'backup_server_ip';
+FLUSH PRIVILEGES;
+```
+
+Use the same username and password in `backup.conf`:
+
+```bash
+DB_NAME="my_database"
+DB_USER="backup_user"
+DB_PASSWORD="strong_password_here"
+```
+
 ## Run
 
 ```bash
