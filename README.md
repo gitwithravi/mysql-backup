@@ -24,6 +24,8 @@ GRANT SELECT, SHOW VIEW, TRIGGER, EVENT, LOCK TABLES ON `my_database`.* TO 'back
 FLUSH PRIVILEGES;
 ```
 
+The script uses `mysqldump --no-tablespaces`, so the backup user does not need the global `PROCESS` privilege on MySQL 8.
+
 If the script connects from another host, replace `localhost` with that host or IP address:
 
 ```sql
